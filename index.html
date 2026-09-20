@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AirAware AI – Air Quality Decision Assistant</title>
+  <!-- Link to external stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Page Header ===== -->
+  <header>
+    <div class="header-inner">
+      <div class="sdg-badge">SDG 11 – Sustainable Cities</div>
+      <h1>AirAware AI</h1>
+      <p class="subtitle">An AI-Powered Air Quality Decision Assistant</p>
+    </div>
+  </header>
+
+  <!-- ===== Main Content ===== -->
+  <main>
+
+    <!-- INPUT SECTION: Users enter their local air quality readings here -->
+    <section class="card" id="input-section">
+      <h2>Enter Air Quality Readings</h2>
+      <p class="section-note">
+        Obtain these values from your local environmental agency or a certified
+        air quality monitor.
+      </p>
+
+      <div class="form-grid">
+
+        <!-- AQI Input -->
+        <div class="form-group">
+          <label for="aqi">AQI (Air Quality Index) <span class="range-hint">0 – 500</span></label>
+          <input
+            type="number"
+            id="aqi"
+            placeholder="e.g. 85"
+            min="0"
+            max="500"
+            aria-describedby="aqi-hint"
+          />
+          <span class="field-hint" id="aqi-hint">US EPA standard scale</span>
+        </div>
+
+        <!-- PM2.5 Input -->
+        <div class="form-group">
+          <label for="pm25">PM2.5 <span class="range-hint">µg/m³</span></label>
+          <input
+            type="number"
+            id="pm25"
+            placeholder="e.g. 25"
+            min="0"
+            step="0.1"
+          />
+          <span class="field-hint">Fine particulate matter (≤ 2.5 µm)</span>
+        </div>
+
+        <!-- PM10 Input -->
+        <div class="form-group">
+          <label for="pm10">PM10 <span class="range-hint">µg/m³</span></label>
+          <input
+            type="number"
+            id="pm10"
+            placeholder="e.g. 50"
+            min="0"
+            step="0.1"
+          />
+          <span class="field-hint">Coarse particulate matter (≤ 10 µm)</span>
+        </div>
+
+        <!-- Outdoor Activity Selection -->
+        <div class="form-group">
+          <label for="activity">Planned Outdoor Activity</label>
+          <select id="activity">
+            <option value="">— Select an activity —</option>
+            <option value="running">Running / Jogging</option>
+            <option value="cycling">Cycling</option>
+            <option value="walking">Walking / Light stroll</option>
+            <option value="sports">Team sports / Outdoor exercise</option>
+            <option value="gardening">Gardening / Yard work</option>
+            <option value="commuting">Daily commute (walking/cycling)</option>
+          </select>
+        </div>
+
+        <!-- Activity Duration -->
+        <div class="form-group">
+          <label for="duration">Activity Duration <span class="range-hint">minutes</span></label>
+          <input
+            type="number"
+            id="duration"
+            placeholder="e.g. 30"
+            min="1"
+            max="480"
+          />
+          <span class="field-hint">Estimated time outdoors</span>
+        </div>
+
+      </div><!-- /.form-grid -->
+
+      <!-- Analyse button -->
+      <button id="analyze-btn" type="button">Analyze Air Quality</button>
+
+    </section><!-- /#input-section -->
+
+    <!-- RESULT SECTION: Hidden until the user clicks "Analyze" -->
+    <section class="card" id="result-section" aria-live="polite" hidden>
+
+      <!-- AQI Category badge -->
+      <div class="result-header">
+        <span class="category-label" id="category-label">—</span>
+        <h2 id="result-heading">Analysis Result</h2>
+      </div>
+
+      <!-- Plain-language explanation -->
+      <div class="result-block" id="explanation-block">
+        <h3>What does this mean?</h3>
+        <p id="explanation-text"></p>
+      </div>
+
+      <!-- Activity suggestion -->
+      <div class="result-block" id="suggestion-block">
+        <h3>Activity Suggestion</h3>
+        <p id="suggestion-text"></p>
+      </div>
+
+      <!-- Reset button -->
+      <button id="reset-btn" type="button" class="secondary">Start Over</button>
+
+    </section><!-- /#result-section -->
+
+    <!-- DISCLAIMER -->
+    <aside class="disclaimer">
+      <strong>Disclaimer:</strong> This is an educational and informational
+      prototype built as part of a college internship project aligned with
+      UN&nbsp;SDG&nbsp;11. It uses rule-based logic and is
+      <em>not</em> a substitute for professional medical advice, diagnosis,
+      or treatment. Always consult a qualified health professional and refer to
+      your local authorities for official air quality guidance.
+    </aside>
+
+  </main>
+
+  <!-- ===== Page Footer ===== -->
+  <footer>
+    <p>AirAware AI &nbsp;·&nbsp; Internship Prototype &nbsp;·&nbsp; SDG 11 – Sustainable Cities and Communities</p>
+  </footer>
+
+  <!-- Link to JavaScript logic -->
+  <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+/* ============================================================
+   AirAware AI – style.css
+   Clean, professional stylesheet for a college internship project.
+   No external libraries used – plain CSS only.
+   ============================================================ */
+
+/* ── 1. CSS Custom Properties (design tokens) ── */
+:root {
+  --color-bg:        #f4f6f9;
+  --color-surface:   #ffffff;
+  --color-border:    #dde1e7;
+  --color-text:      #1a1d23;
+  --color-muted:     #5a6170;
+  --color-accent:    #1a73e8;
+  --color-accent-dk: #1558b0;
+
+  /* AQI category colours */
+  --aqi-good:        #2e7d32;
+  --aqi-moderate:    #f9a825;
+  --aqi-sensitive:   #e65100;
+  --aqi-unhealthy:   #c62828;
+  --aqi-very-unhealthy: #6a1b9a;
+  --aqi-hazardous:   #37001a;
+
+  --radius:   10px;
+  --shadow:   0 2px 8px rgba(0, 0, 0, 0.08);
+  --max-width: 740px;
+}
+
+/* ── 2. Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* ── 3. Header ── */
+header {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  padding: 2.5rem 1.25rem 2rem;
+  text-align: center;
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* SDG badge sitting above the main title */
+.sdg-badge {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  padding: 0.2rem 0.85rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  margin-top: 0.3rem;
+  font-size: 1rem;
+  opacity: 0.88;
+}
+
+/* ── 4. Main layout ── */
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── 5. Card component (used for input and result sections) ── */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.75rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--color-text);
+}
+
+/* Small descriptive note below section headings */
+.section-note {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* ── 6. Form grid ── */
+/* Two-column grid that collapses to one column on small screens */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+@media (max-width: 520px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+/* Labels */
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+/* The small "(0 – 500)" hint next to the label text */
+.range-hint {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+/* Inputs and select share the same base style */
+.form-group input,
+.form-group select {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background-color: #fafbfc;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+  background-color: #fff;
+}
+
+/* Small helper text below each field */
+.field-hint {
+  font-size: 0.77rem;
+  color: var(--color-muted);
+}
+
+/* ── 7. Buttons ── */
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 7px;
+  padding: 0.7rem 1.75rem;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.1s;
+}
+
+/* Primary button (Analyze) */
+#analyze-btn {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  width: 100%;
+}
+
+#analyze-btn:hover {
+  background-color: var(--color-accent-dk);
+}
+
+#analyze-btn:active {
+  transform: scale(0.98);
+}
+
+/* Secondary button (Start Over) */
+button.secondary {
+  background-color: transparent;
+  color: var(--color-accent);
+  border: 1.5px solid var(--color-accent);
+  margin-top: 0.5rem;
+}
+
+button.secondary:hover {
+  background-color: rgba(26, 115, 232, 0.06);
+}
+
+/* ── 8. Result section ── */
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* The coloured AQI category pill */
+.category-label {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  background-color: var(--color-muted); /* overridden by JS */
+}
+
+/* Individual result blocks (explanation / suggestion) */
+.result-block {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.result-block h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+  margin-bottom: 0.45rem;
+}
+
+.result-block p {
+  font-size: 0.97rem;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+/* ── 9. AQI category colour helpers (applied via JS) ── */
+/* JS adds one of these classes to .category-label and the card border */
+.aqi-good        { background-color: var(--aqi-good); }
+.aqi-moderate    { background-color: var(--aqi-moderate); color: #1a1d23; }
+.aqi-sensitive   { background-color: var(--aqi-sensitive); }
+.aqi-unhealthy   { background-color: var(--aqi-unhealthy); }
+.aqi-very-unhealthy { background-color: var(--aqi-very-unhealthy); }
+.aqi-hazardous   { background-color: var(--aqi-hazardous); }
+
+/* Border accent on the result card matching the AQI category */
+#result-section.aqi-good        { border-left: 5px solid var(--aqi-good); }
+#result-section.aqi-moderate    { border-left: 5px solid var(--aqi-moderate); }
+#result-section.aqi-sensitive   { border-left: 5px solid var(--aqi-sensitive); }
+#result-section.aqi-unhealthy   { border-left: 5px solid var(--aqi-unhealthy); }
+#result-section.aqi-very-unhealthy { border-left: 5px solid var(--aqi-very-unhealthy); }
+#result-section.aqi-hazardous   { border-left: 5px solid var(--aqi-hazardous); }
+
+/* ── 10. Disclaimer ── */
+.disclaimer {
+  background-color: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  font-size: 0.83rem;
+  color: #5d4037;
+  line-height: 1.6;
+}
+
+.disclaimer strong {
+  font-weight: 700;
+}
+
+/* ── 11. Footer ── */
+footer {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ── 12. Utility: hidden element ── */
+/* The [hidden] attribute already hides elements; this makes
+   transition in/out smoother if needed in future. */
+[hidden] { display: none !important; }
